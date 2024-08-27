@@ -1,0 +1,43 @@
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "rifai@mail.com",
+  "password": "rahasia"
+}
+
+###
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "rifai@mail.com",
+  "password": "rahasia"
+}
+
+###
+
+POST http://localhost:3000/api/auth/register/google
+Content-Type: application/json
+
+{
+  "email": "rifai21@mail.com",
+  "google_id": "test"
+}
+
+###
+
+POST http://localhost:3000/api/auth/login/google
+Content-Type: application/json
+
+{
+  "email": "rifai21@mail.com",
+  "google_id": "test"
+}
+
+###
+
+GET http://localhost:3000/api/users/current
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyaWZhaTIxQG1haWwuY29tIiwiaWF0IjoxNzI0NzcwMTk1LCJleHAiOjE3MjQ3NzAyNTV9.hJTfzRUCBUSljYcSQnxMmXXRdgwNQvysJyvV4KXPF8o
