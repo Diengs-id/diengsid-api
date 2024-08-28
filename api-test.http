@@ -58,7 +58,7 @@ POST http://localhost:3000/api/auth/send-otp
 Content-Type: application/json
 
 {
-  "email": "rifai2@mail.com"
+  "email": "ahmmd.riffai@gmail.com"
 }
 
 ###
@@ -67,6 +67,6 @@ POST http://localhost:3000/api/auth/verify-otp
 Content-Type: application/json
 
 {
-  "email": "rifai2@mail.com",
-  "otp" : "644102"
+  "email": "ahmmd.riffai@gmail.com",
+  "otp" : "507138"
 }

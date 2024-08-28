@@ -1,7 +1,7 @@
 import { AuthServiceInterface } from './auth-service.interface';
 import { AuthResponseDto } from './dto/auth-response.dto';
 import { AuthLoginDto } from './dto/auth-login.dto';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../../common/prisma/prisma.service';
 import { HttpException, Inject, UnauthorizedException } from '@nestjs/common';
 import { AuthGoogleDto } from './dto/auth-google.dto';
 import { AuthRegisterDto } from './dto/auth-register.dto';
@@ -11,6 +11,7 @@ import { AuthEmailVerifiedDto } from './dto/auth-email-verified.dto';
 import * as otpGenerator from 'otp-generator';
 import { AuthVerifyOtpDto } from './dto/auth-verify-otp.dto';
 import * as moment from 'moment';
+import { EmailService } from '../../common/email/email.service';
 
 export class AuthService implements AuthServiceInterface {
   @Inject()
@@ -18,6 +19,9 @@ export class AuthService implements AuthServiceInterface {
 
   @Inject()
   private jwtService: JwtService;
+
+  @Inject()
+  private emailService: EmailService;
 
   async loginGoogle(authGoogleDto: AuthGoogleDto): Promise<AuthResponseDto> {
     const user = await this.prismaService.user.findFirst({
@@ -155,7 +159,8 @@ export class AuthService implements AuthServiceInterface {
       });
     }
 
-    // TODO send email
+    // send email
+    await this.emailService.sendOtp(authEmailVerifiedDto.email, otp);
 
     return otp;
   }
