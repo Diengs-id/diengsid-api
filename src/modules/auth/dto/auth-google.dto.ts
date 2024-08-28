@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class AutoGoogleDto {
+export class AuthGoogleDto {
   @IsNotEmpty()
   google_id: string;
   @IsNotEmpty()

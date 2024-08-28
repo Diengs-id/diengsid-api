@@ -1,0 +1,1002 @@
+{
+  "uuid": "f22414ce-7781-4d76-a8b9-24327d060e7c",
+  "lastMigration": 32,
+  "name": "diengs-fake-api",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 2000,
+  "hostname": "",
+  "folders": [
+    {
+      "uuid": "9a055ebd-d80a-4d39-9015-8b71f54d9ce9",
+      "name": "[Page] Login",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "e268ebbc-69c0-4c8e-8a36-a45450d3350b"
+        },
+        {
+          "type": "route",
+          "uuid": "e29e8d10-85fe-4db0-a4b2-8b710ecaac1b"
+        }
+      ]
+    },
+    {
+      "uuid": "58b8cbc5-4287-4005-a517-9d8bda0f4335",
+      "name": "[Page] Register 1",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "67804c8c-5f87-49e1-8b97-c1df0de98a8f"
+        }
+      ]
+    },
+    {
+      "uuid": "5232db4f-7530-4403-b46f-ec6635180511",
+      "name": "[Page] Send Email Verification",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "3eef2be6-755b-46b5-86d3-4bd8c1dde965"
+        }
+      ]
+    },
+    {
+      "uuid": "d65c8290-8391-41cb-a8e5-3b04ad5d625d",
+      "name": "[Page] Verification Code",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "77633f07-9452-4949-8416-f92f719685bb"
+        }
+      ]
+    },
+    {
+      "uuid": "282bd3f1-ad22-487a-a2c6-54c1a3dad4f1",
+      "name": "[Page] Register 2",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "a314ac7f-c5c8-4287-94b8-2ac88c56ea31"
+        },
+        {
+          "type": "route",
+          "uuid": "1f7304e1-9a58-447d-b7a3-d516aec29561"
+        }
+      ]
+    },
+    {
+      "uuid": "d931d5ea-b00b-4ef1-8085-aec4dbc31208",
+      "name": "[Page] Home",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "73705e21-e34c-4eb7-9a3f-ff19d50fdbb0"
+        },
+        {
+          "type": "route",
+          "uuid": "7ca4d235-3770-4b77-9ddb-99462fc01545"
+        },
+        {
+          "type": "route",
+          "uuid": "110bc32b-7ba9-48c6-a05c-555a93098747"
+        },
+        {
+          "type": "route",
+          "uuid": "3236fe41-5960-4ed1-9bc7-ccac98998aed"
+        },
+        {
+          "type": "route",
+          "uuid": "c04ee148-22c1-437a-8f86-0cbb2d7a4f58"
+        }
+      ]
+    },
+    {
+      "uuid": "50e83f00-8cfb-4a8b-8f59-ecd9058a98cf",
+      "name": "[Page] Detail Homestay",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "0c64f405-d58d-4e03-9ad2-63926cf96e3d"
+        },
+        {
+          "type": "route",
+          "uuid": "932bddb4-15a1-4efd-9a65-7f1908e56376"
+        },
+        {
+          "type": "route",
+          "uuid": "cdfa0d1f-2663-444e-954e-a4e9063cf667"
+        }
+      ]
+    },
+    {
+      "uuid": "b795cc44-2cf8-491d-97d9-794ed72206b4",
+      "name": "[Page] Booking",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "132defcd-9ed6-4065-8898-4f20981282aa"
+        },
+        {
+          "type": "route",
+          "uuid": "51743f5b-72e9-4a87-9202-feb05b4e451f"
+        },
+        {
+          "type": "route",
+          "uuid": "719789ee-197d-4974-8576-7e1457629397"
+        }
+      ]
+    },
+    {
+      "uuid": "53cdc821-32d8-4059-85b7-f06ae303cc9d",
+      "name": "[Page] List Booking",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "ef8a8f25-c02c-42d0-87eb-c9270b50df7f"
+        }
+      ]
+    },
+    {
+      "uuid": "09b434ed-6d38-4419-92ce-11e4515152e6",
+      "name": "[Page] Payments",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "b0e77bd4-4094-4e0d-88a8-60c5b5b3941e"
+        },
+        {
+          "type": "route",
+          "uuid": "e2aa5a8d-d4c7-4a85-a879-dad92f08915a"
+        }
+      ]
+    },
+    {
+      "uuid": "41e2dc3b-5dfe-41d2-b70d-68fd4a93b1cc",
+      "name": "[Page] Favorite List ",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "2e6ea24f-5bba-4485-ae9f-0813b067c1c8"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "uuid": "e268ebbc-69c0-4c8e-8a36-a45450d3350b",
+      "type": "http",
+      "documentation": "login email ",
+      "method": "post",
+      "endpoint": "v1/users/login",
+      "responses": [
+        {
+          "uuid": "9f17f2ca-de90-4c67-a88e-df3ee7f2f9e4",
+          "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"email\": \"test\",\n    \"name\": \"test\",\n    \"token\": \"token bebas\",\n    \"token_type\": \"string\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "8c1b4dc0-144e-4eee-83c5-ab8d943cc7f0",
+          "body": "{\n  \"errors\": {\n    \"login\": [\n      \"email and password not match\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "67804c8c-5f87-49e1-8b97-c1df0de98a8f",
+      "type": "http",
+      "documentation": "validasi otp",
+      "method": "post",
+      "endpoint": "v1/users/email-validate",
+      "responses": [
+        {
+          "uuid": "616e910f-41b8-4093-b16f-3766359a79db",
+          "body": "{\n  \"validate\": true,\n  \"message\": \"success email validate\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "0e5ec964-87be-4271-8b30-428ea6ae7756",
+          "body": "{\n  \"validate\": false,\n  \"message\": \"fail email validate\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "3eef2be6-755b-46b5-86d3-4bd8c1dde965",
+      "type": "http",
+      "documentation": "kirim otp email",
+      "method": "post",
+      "endpoint": "v1/users/email-send-otp",
+      "responses": [
+        {
+          "uuid": "ce925c50-2db5-4cf5-9316-bc4c441f536a",
+          "body": "{\n  \"succcess\": true,\n  \"message\": \"succcess send email verification code\",\n  \"data\": {\n    \"email\": \"user@gmail.com\",\n    \"code\": \"245675\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "897eb390-8f4d-4b88-8460-776b0f9d3dc0",
+          "body": "{\n  \"errors\": {\n    \"otp\": [\n      \"fail send otp\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "77633f07-9452-4949-8416-f92f719685bb",
+      "type": "http",
+      "documentation": "verifikasi otp",
+      "method": "post",
+      "endpoint": "v1/users/email-verif-otp",
+      "responses": [
+        {
+          "uuid": "04d1a851-080f-4b32-856d-1cb909297c55",
+          "body": "{\n  \"validate\": true,\n  \"message\": \"success code validate\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "6745d6ab-80d1-46c6-ab59-da01ed0b6cb7",
+          "body": "{\n  \"errors\": {\n    \"otp\": [\n      \"code is not match\",\n      \"code expired\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "a314ac7f-c5c8-4287-94b8-2ac88c56ea31",
+      "type": "http",
+      "documentation": "registrasi user",
+      "method": "post",
+      "endpoint": "v1/users/register",
+      "responses": [
+        {
+          "uuid": "1eefee15-15da-4fbd-bccf-e94981207c65",
+          "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"email\": \"string\",\n    \"name\": \"string\",\n    \"token\": \"string\",\n    \"token_type\": \"string\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "d4075ce2-040e-44de-b63b-99d3da0860c7",
+          "body": "{\n  \"errors\": {\n    \"name\": [\n      \"message\"\n    ],\n    \"email\": [\n      \"message\"\n    ],\n    \"password\": [\n      \"message\"\n    ],\n  }\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "e29e8d10-85fe-4db0-a4b2-8b710ecaac1b",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "v1/users/login/google",
+      "responses": [
+        {
+          "uuid": "a5c627e4-071f-4b5e-92d9-9fbee2fbcec5",
+          "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"email\": \"string\",\n    \"name\": \"string\",\n    \"number_phone\": \"string\"\n    \"token\": \"string\",\n    \"token_type\": \"string\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "51743f5b-72e9-4a87-9202-feb05b4e451f",
+      "type": "http",
+      "documentation": "get user login",
+      "method": "get",
+      "endpoint": "v1/users/current",
+      "responses": [
+        {
+          "uuid": "3b47ee9f-e38d-435b-bcf2-51b0b7789698",
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"number_phone\": \"string\",\n  \"image_url\": \"string\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "1f7304e1-9a58-447d-b7a3-d516aec29561",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "v1/users/register/google",
+      "responses": [
+        {
+          "uuid": "d80b10c8-88a8-4361-8071-e5c7702ab2ce",
+          "body": "{\n  \"errors\": {\n    \"google_id\": [\n      \"message\"\n    ],\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "e7da1ca0-9586-4d4f-b887-425bc0b58da5",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "7ca4d235-3770-4b77-9ddb-99462fc01545",
+      "type": "http",
+      "documentation": "get banner",
+      "method": "get",
+      "endpoint": "v1/banner",
+      "responses": [
+        {
+          "uuid": "0497d042-73b7-46dc-870b-c2f04a6cbe1d",
+          "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"images_url\": \"string\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "73705e21-e34c-4eb7-9a3f-ff19d50fdbb0",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/categories",
+      "responses": [
+        {
+          "uuid": "1c4557a9-8766-4ffb-963e-dbcaf625a38e",
+          "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"categories\": \"categori 1\"\n    },\n    {\n      \"id\": \"string\",\n      \"categories\": \"categori 2\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "110bc32b-7ba9-48c6-a05c-555a93098747",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/homestays",
+      "responses": [
+        {
+          "uuid": "d648278d-7a8b-444d-a7d4-a0f3a7151b77",
+          "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"location\": \"string\",\n      \"description\": \"string\",\n      \"main_image\": \"string\",\n      \"rating\": 0\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"location\": \"string\",\n      \"description\": \"string\",\n      \"main_image\": \"string\",\n      \"rating\": 0\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"location\": \"string\",\n      \"description\": \"string\",\n      \"main_image\": \"string\",\n      \"rating\": 0\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "3236fe41-5960-4ed1-9bc7-ccac98998aed",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/rooms",
+      "responses": [
+        {
+          "uuid": "d7198612-a905-4527-a68e-055a346b13c1",
+          "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"room_type\": \"string\",\n      \"main_image\": \"string\",\n      \"price\": 0\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "c04ee148-22c1-437a-8f86-0cbb2d7a4f58",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/destinations",
+      "responses": [
+        {
+          "uuid": "3e5ed327-aced-4b75-bb68-7ce154039e1b",
+          "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"location\": \"string\",\n      \"image_url\": \"string\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "0c64f405-d58d-4e03-9ad2-63926cf96e3d",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/homestays/:id_homestay",
+      "responses": [
+        {
+          "uuid": "cef65577-c2fc-43b4-b4f1-1eb3275eb35f",
+          "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"total_rating\": 0,\n    \"location\": \"string\",\n    \"address\": \"string\",\n    \"main_image\": \"string\",\n    \"images\": [\n      {\n        \"id\": \"string\",\n        \"image_url\": \"string\"\n      }\n    ],\n    \"facilities\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"icon\": \"string\"\n      }\n    ],\n    \"destinations\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"distance\": 0\n      }\n    ],\n    \"rooms\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"price\": 0,\n      \"main_image\": \"string\"\n    },\n    \"ratings\": [\n      {\n        \"id\": \"string\",\n        \"rating\": 0,\n        \"review\": \"string\",\n        \"user\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"image_url\": \"string\"\n        },\n        \"images\": [\n          \"string\"\n        ]\n      }\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "932bddb4-15a1-4efd-9a65-7f1908e56376",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/rooms/:id_room",
+      "responses": [
+        {
+          "uuid": "baea8e8a-d51e-4c1b-ab0b-a4a8728bfab8",
+          "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"price\": 0,\n    \"main_image\": \"string\",\n    \"facilities\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"icon\": \"string\"\n      }\n    ],\n    \"images\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "cdfa0d1f-2663-444e-954e-a4e9063cf667",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "v1/favorite",
+      "responses": [
+        {
+          "uuid": "3ee08870-727b-47e4-965c-e50b3bde43c8",
+          "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"user\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"number_phone\": \"string\"\n    },\n    \"homestay\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"main_image\": \"string\",\n      \"address\": \"string\",\n      \"rating\": 0\n    }\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "132defcd-9ed6-4065-8898-4f20981282aa",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "v1/bookings",
+      "responses": [
+        {
+          "uuid": "772c8cc8-df61-4ac7-9afd-eb5231c0d21f",
+          "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"id_booking\": \"string\",\n    \"user\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\"\n    },\n    \"room\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"room_type\": \"string\",\n      \"main_image\": \"string\",\n      \"price\": 0,\n      \"homestay\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"total_rating\": 0,\n        \"location\": \"string\",\n        \"address\": \"string\",\n        \"main_image\": \"string\"\n      }\n    },\n    \"fist_payment\": \"string\",\n    \"check_in\": \"string\",\n    \"check_out\": \"string\",\n    \"number_guest\": 0,\n    \"number_guest_child\": 0,\n    \"duration\": 0,\n    \"total_amount\": 0,\n    \"booking_status\": \"string\",\n    \"order_date\": \"string\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "719789ee-197d-4974-8576-7e1457629397",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "v1/users/current",
+      "responses": [
+        {
+          "uuid": "5d0f0eb4-8d8f-4ac3-a0b5-2befe058ec54",
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"number_phone\": \"string\",\n  \"image_url\": \"string\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "ef8a8f25-c02c-42d0-87eb-c9270b50df7f",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "bookings",
+      "responses": [
+        {
+          "uuid": "1bc4e0f0-5b0e-453c-a1b5-f3e1d6b4a4de",
+          "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"room\": {\n        \"id\": \"string\",\n        \"main_image\": \"string\",\n        \"price\": 0,\n        \"homestay\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"rating\": 0,\n          \"address\": \"string\"\n        }\n      },\n      \"fist_payment\": \"string\",\n      \"check_in\": \"string\",\n      \"check_out\": \"string\",\n      \"number_guest\": 0,\n      \"number_guest_child\": 0,\n      \"booking_status\": \"string\"\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "b0e77bd4-4094-4e0d-88a8-60c5b5b3941e",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "v1/payments",
+      "responses": [
+        {
+          "uuid": "5bde4798-3ae5-42fa-bccd-cd30598b91ac",
+          "body": "{\n  \"id\": \"string\",\n  \"order_id\": \"string\",\n  \"payment_code\": \"string\",\n  \"total_amount\": 0,\n  \"status_payment\": \"string\",\n  \"payment_method\": \"string\",\n  \"payment_type\": \"string\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "e2aa5a8d-d4c7-4a85-a879-dad92f08915a",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/payments/order_id/order",
+      "responses": [
+        {
+          "uuid": "90840a1a-1944-4256-837f-16e4eaa64746",
+          "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"payment_type\": \"string\",\n    \"payment_code\": \"string\",\n    \"payment_method\": \"string\",\n    \"expired\": \"string\",\n    \"total_amount\": 0\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "2e6ea24f-5bba-4485-ae9f-0813b067c1c8",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "v1/favorite",
+      "responses": [
+        {
+          "uuid": "59bde4bc-96b0-4bb1-bd09-57855cf657bc",
+          "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"main_image\": \"string\",\n      \"address\": \"string\",\n      \"rating\": 0\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "folder",
+      "uuid": "9a055ebd-d80a-4d39-9015-8b71f54d9ce9"
+    },
+    {
+      "type": "folder",
+      "uuid": "58b8cbc5-4287-4005-a517-9d8bda0f4335"
+    },
+    {
+      "type": "folder",
+      "uuid": "5232db4f-7530-4403-b46f-ec6635180511"
+    },
+    {
+      "type": "folder",
+      "uuid": "d65c8290-8391-41cb-a8e5-3b04ad5d625d"
+    },
+    {
+      "type": "folder",
+      "uuid": "282bd3f1-ad22-487a-a2c6-54c1a3dad4f1"
+    },
+    {
+      "type": "folder",
+      "uuid": "d931d5ea-b00b-4ef1-8085-aec4dbc31208"
+    },
+    {
+      "type": "folder",
+      "uuid": "50e83f00-8cfb-4a8b-8f59-ecd9058a98cf"
+    },
+    {
+      "type": "folder",
+      "uuid": "b795cc44-2cf8-491d-97d9-794ed72206b4"
+    },
+    {
+      "type": "folder",
+      "uuid": "53cdc821-32d8-4059-85b7-f06ae303cc9d"
+    },
+    {
+      "type": "folder",
+      "uuid": "09b434ed-6d38-4419-92ce-11e4515152e6"
+    },
+    {
+      "type": "folder",
+      "uuid": "41e2dc3b-5dfe-41d2-b70d-68fd4a93b1cc"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Accept",
+      "value": "application/json"
+    },
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

@@ -40,4 +40,33 @@ Content-Type: application/json
 
 GET http://localhost:3000/api/users/current
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyaWZhaTIxQG1haWwuY29tIiwiaWF0IjoxNzI0NzcwMTk1LCJleHAiOjE3MjQ3NzAyNTV9.hJTfzRUCBUSljYcSQnxMmXXRdgwNQvysJyvV4KXPF8o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJyaWZhaTIxQG1haWwuY29tIiwiaWF0IjoxNzI0ODE5NTkxLCJleHAiOjE3MjQ4MTk2NTF9.9wL5jx5GduVN3_JowuYOSMFCbfXOTUxoAy-fcb972YI
+
+
+
+###
+POST http://localhost:3000/api/auth/email-verified
+Content-Type: application/json
+
+{
+  "email": "rifai@mail.com"
+}
+
+###
+
+POST http://localhost:3000/api/auth/send-otp
+Content-Type: application/json
+
+{
+  "email": "rifai2@mail.com"
+}
+
+###
+
+POST http://localhost:3000/api/auth/verify-otp
+Content-Type: application/json
+
+{
+  "email": "rifai2@mail.com",
+  "otp" : "644102"
+}

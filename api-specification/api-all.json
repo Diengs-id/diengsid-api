@@ -1,0 +1,1603 @@
+{
+  "openapi":"3.0.2",
+  "info": {
+    "title":"API Diengs ID ",
+    "version":"1.0",
+    "description": "This is an  API for website diengs.id OpenApi Specification.",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "name": "Ahmad Rifai",
+      "email": "ahmmd.riffai@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url":"{protocol}://{environment}.diengs.id/v1",
+      "variables": {
+        "environment":{
+          "default": "api",
+          "enum":["api", "api.dev", "api.staging"]
+        },
+        "protocol":{
+          "default": "https",
+          "enum": ["http", "https"]
+        }
+      },
+      "description": "production server"
+    },
+    {"url":"http://localhost:8000/v1", "description": "local server"}
+
+  ],
+  "paths": {
+    "/users/login":{
+      "post":{
+        "description": "Login user",
+        "tags": ["users", "[page] login"],
+        "requestBody":{
+          "content": {
+            "applicaton/json":{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "email":{
+                    "type": "string"
+                  },
+                  "password":{
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "success login",
+            "content": {
+              "applicaton/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "id":{
+                          "type": "string"
+                        },
+                        "email":{
+                          "type": "string"
+                        },
+                        "customer":{
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "number_phone":{
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "token":{
+                          "type": "string"
+                        },
+                        "token_type":{
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/login/google":{
+      "post":{
+        "description": "Login With Google",
+        "tags": ["users", "[page] login"],
+        "requestBody":{
+          "content": {
+            "applicaton/json":{
+              "examples": {
+                "rifai":{
+                  "description": "Login with google id rifai",
+                  "value":{
+                    "google_id": "djflasjdflajlkjdfalsd"
+                  }
+                }
+              },
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "google_id":{
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "success login",
+            "content": {
+              "applicaton/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "id":{
+                          "type": "string"
+                        },
+                        "email":{
+                          "type": "string"
+                        },
+                        "google_id":{
+                          "type": "string"
+                        },
+                        "customer":{
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "number_phone":{
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "token":{
+                          "type": "string"
+                        },
+                        "token_type":{
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/email-validate":{
+      "post":{
+        "description": "Email Validasi",
+        "tags": ["users", "[page]register 1"],
+        "requestBody":{
+          "content": {
+            "application/json" :{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "email":{
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "success validate email",
+            "content": {
+              "applicaton/json":{
+                "examples": {
+                  "success validate": {
+                    "description": "Validation email success",
+                    "value": {
+                      "validate": true,
+                      "message": "success email validate"
+                    }
+                  }
+                },
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "validate":{
+                      "type": "boolean"
+                    },
+                    "message":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400":{
+            "description": "fail validate email",
+            "content": {
+              "application/json":{
+                "examples": {
+                  "fail validate":{
+                    "description": "validatation email fail",
+                    "value": {
+                      "validate": false,
+                      "message": "fail email validate"
+                    }
+                  }
+                },
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "validate":{
+                      "type": "boolean"
+                    },
+                    "message":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/email-send-otp":{
+      "post":{
+        "description": "send and email verification",
+        "tags": ["users", "[page] send email verification", "[page] verification code"],
+        "requestBody" : {
+          "content": {
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "email":{
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "success send email verification",
+            "content": {
+              "application/json":{
+                "examples": {
+                  "succcess send email":{
+                    "description": "succcess send email",
+                    "value":{
+                      "succcess": true,
+                      "message": "succcess send email verification code",
+                      "data": {
+                        "email": "user@gmail.com",
+                        "code" : "245675"
+                      }
+                    }
+                  }
+                },
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "succcess": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "email":{
+                          "type": "string"
+                        },
+                        "code":{
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500":{
+            "description": "fail send email verification",
+            "content": {
+              "application/json":{
+                "examples": {
+                  "error": {
+                    "description": "send error",
+                    "value": {
+                      "errors": {
+                        "server": "server error"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/email-verif-otp":{
+      "post":{
+        "description": "validate email verification",
+        "tags": ["users", "[page] verification code"],
+        "requestBody":{
+          "content": {
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "email":{
+                    "type": "string"
+                  },
+                  "otp":{
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "success validate email",
+            "content": {
+              "applicaton/json":{
+                "examples": {
+                  "success validate": {
+                    "description": "Validation code success",
+                    "value": {
+                      "validate": true,
+                      "message": "success code validate"
+                    }
+                  }
+                },
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "validate":{
+                      "type": "boolean"
+                    },
+                    "message":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "validationerror": {
+                    "description": "Validation error",
+                    "value": {
+                      "errors": {
+                        "username": [
+                          "code is not match",
+                          "code expired"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/register":{
+      "post":{
+        "description": "register user",
+        "tags": ["users", "[page] register 2"],
+        "requestBody":{
+          "content": {
+            "applicaton/json":{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "email":{
+                    "type": "string"
+                  },
+                  "name":{
+                    "type": "string"
+                  },
+                  "password" :{
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "success login",
+            "content": {
+              "applicaton/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "id":{
+                          "type": "string"
+                        },
+                        "email":{
+                          "type": "string"
+                        },
+                        "customer":{
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "number_phone":{
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "token":{
+                          "type": "string"
+                        },
+                        "token_type":{
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/register/google":{
+      "post":{
+        "description": "register user",
+        "tags": ["users", "[page] register 2"],
+        "requestBody":{
+          "content": {
+            "applicaton/json":{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "email":{
+                    "type": "string"
+                  },
+                  "name":{
+                    "type": "string"
+                  },
+                  "google_id" :{
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "success login",
+            "content": {
+              "applicaton/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "id":{
+                          "type": "string"
+                        },
+                        "email":{
+                          "type": "string"
+                        },
+                        "customer":{
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "number_phone":{
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "token":{
+                          "type": "string"
+                        },
+                        "token_type":{
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/banner":{
+      "get":{
+        "description": "Get Banner Active",
+        "tags": ["banner", "[page] home"],
+        "parameters": [
+          {
+            "name": "is_active",
+            "in": "query",
+            "schema":{
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "get all banner",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "array",
+                      "items":{
+                        "type": "object",
+                        "properties": {
+                          "id":{
+                            "type": "string"
+                          },
+                          "name":{
+                            "type": "string"
+                          },
+                          "images_url":{
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories":{
+      "get":{
+        "description": "get all categories",
+        "tags": ["categories", "[page] home"],
+        "responses": {
+          "200":{
+            "description": "get success categories",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {"type": "string"},
+                          "categories":{"type": "string"}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/homestays":{
+      "get":{
+        "description": "get homestays",
+        "tags": ["homestays", "[page] home"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema":{
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "schema":{
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "success get homestays",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "array",
+                      "items":{
+                        "type": "object",
+                        "properties": {
+                          "id":{
+                            "type": "string"
+                          },
+                          "name":{
+                            "type": "string"
+                          },
+                          "location":{
+                            "type": "string"
+                          },
+                          "description":{
+                            "type": "string"
+                          },
+                          "main_image":{
+                            "type": "string"
+                          },
+                          "rating":{
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rooms":{
+      "get":{
+        "description": "get all rooms",
+        "tags": ["rooms", "[page] home"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema":{
+              "type": "string"
+            }
+          },
+          {
+            "name": "room_type",
+            "in": "query",
+            "schema":{
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "success get rooms",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "array",
+                      "items":{
+                        "type": "object",
+                        "properties": {
+                          "id":{
+                            "type": "string"
+                          },
+                          "name":{
+                            "type": "string"
+                          },
+                          "room_type":{
+                            "type": "string"
+                          },
+                          "main_image":{
+                            "type": "string"
+                          },
+                          "price":{
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/destinations":{
+      "get":{
+        "description": "get all tour destination",
+        "tags": ["destinations", "[page] home"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "succcess get destionation",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "array",
+                      "items":{
+                        "type": "object",
+                        "properties": {
+                          "id":{"type": "string"},
+                          "name":{"type": "string"},
+                          "description":{"type": "string"},
+                          "location":{"type": "string"},
+                          "image_url":{"type": "string"}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/homestays/{id_homestay}":{
+      "get":{
+        "description": "Get detail homestay",
+        "tags": ["homestays", "[page] detail homestay"],
+        "parameters": [
+          {
+            "name": "id_homestay",
+            "in": "path",
+            "schema":{
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "success get homestay detail",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name":{
+                          "type": "string"
+                        },
+                        "total_rating":{
+                          "type": "integer"
+                        },
+                        "location":{
+                          "type": "string"
+                        },
+                        "address":{
+                          "type": "string"
+                        },
+                        "main_image":{
+                          "type": "string"
+                        },
+                        "images":{
+                          "type": "array",
+                          "items":{
+                            "type": "object",
+                            "properties": {
+                              "id":{"type": "string"},
+                              "image_url":{"type": "string"}
+                            }
+                          }
+                        },
+                        "facilities":{
+                          "type": "array",
+                          "items":{
+                            "type": "object",
+                            "properties": {
+                              "id":{"type": "string"},
+                              "name":{"type": "string"},
+                              "icon":{"type": "string"}
+                            }
+                          }
+                        },
+                        "destinations":{
+                          "type": "array",
+                          "items":{
+                            "type": "object",
+                            "properties": {
+                              "id":{"type": "string"},
+                              "name":{"type": "string"},
+                              "distance":{"type": "integer" }
+                            }
+                          }
+                        },
+                        "rooms":{
+                          "type": "object",
+                          "properties": {
+                            "id":{
+                              "type": "string"
+                            },
+                            "name":{
+                              "type": "string"
+                            },
+                            "price":{
+                              "type": "integer"
+                            },
+                            "main_image":{
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "ratings":{
+                          "type": "array",
+                          "items":{
+                            "type": "object",
+                            "properties": {
+                              "id":{"type": "string"},
+                              "rating":{"type": "integer"},
+                              "review":{"type": "string"},
+                              "user":{
+                                "type": "object",
+                                "properties": {
+                                  "id":{
+                                    "type": "string"
+                                  },
+                                  "name":{
+                                    "type": "string"
+                                  },
+                                  "image_url":{
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "images":{
+                                "type": "array",
+                                "description": "gambar untuk ulasan yang dikirim user",
+                                "items":{
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rooms/{id_room}":{
+      "get":{
+        "description": "get detail room",
+        "tags": ["rooms", "[page] detail homestay"],
+        "parameters": [
+          {
+            "required": true,
+            "name": "id_rooms",
+            "in": "path",
+            "schema":{
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "success get detail room",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "id":{
+                          "type": "string"
+                        },
+                        "name":{
+                          "type": "string"
+                        },
+                        "price":{
+                          "type": "integer"
+                        },
+                        "main_image":{
+                          "type": "string"
+                        },
+                        "facilities":{
+                          "type": "array",
+                          "items":{
+                            "type": "object",
+                            "properties": {
+                              "id":{"type": "string"},
+                              "name":{"type": "string"},
+                              "icon":{"type": "string"}
+                            }
+                          }
+                        },
+                        "images":{
+                          "type": "array",
+                          "items":{
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bookings":{
+      "post":{
+        "description": "maka booking homestay",
+        "tags": ["bookings", "[page] booking"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema":{
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required": true,
+          "content": {
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "room_id":{
+                    "type": "string"
+                  },
+                  "fist_payment":{
+                    "type": "string"
+                  },
+                  "check_in":{
+                    "type": "string"
+                  },
+                  "check_out":{
+                    "type": "string"
+                  },
+                  "number_guest":{
+                    "type": "integer"
+                  },
+                  "number_guest_child":{
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "success boking room homestay",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "id":{
+                          "type": "string"
+                        },
+                        "id_booking":{
+                          "type": "string"
+                        },
+                        "user":{
+                          "type": "object",
+                          "properties": {
+                            "id":{
+                              "type": "string"
+                            },
+                            "name":{
+                              "type": "string"
+                            },
+                            "email":{
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "room":{
+                          "type": "object",
+                          "properties": {
+                            "id":{
+                              "type": "string"
+                            },
+                            "name":{
+                              "type": "string"
+                            },
+                            "room_type":{
+                              "type": "string"
+                            },
+                            "main_image":{
+                              "type": "string"
+                            },
+                            "price":{
+                              "type": "integer"
+                            },
+                            "homestay":{
+                              "type": "object",
+                              "properties": {
+                                "id":{
+                                  "type": "string"
+                                },
+                                "name":{
+                                  "type": "string"
+                                },
+                                "total_rating":{
+                                  "type": "integer"
+                                },
+                                "location":{
+                                  "type": "string"
+                                },
+                                "address":{
+                                  "type": "string"
+                                },
+                                "main_image":{
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "fist_payment":{
+                          "type": "string"
+                        },
+                        "check_in":{
+                          "type": "string"
+                        },
+                        "check_out":{
+                          "type": "string"
+                        },
+                        "number_guest":{
+                          "type": "integer"
+                        },
+                        "number_guest_child":{
+                          "type": "integer"
+                        },
+                        "duration":{
+                          "type": "integer"
+                        },
+                        "total_amount":{
+                          "type": "integer"
+                        },
+                        "booking_status":{
+                          "type": "string"
+                        },
+                        "order_date":{
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get":{
+        "description": "get booking per user loging",
+        "tags": ["bookings", "[page] list booking"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema":{
+              "type": "string"
+            }
+          },
+          {
+            "name": "booking_status_id",
+            "in": "query",
+            "schema":{
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "succcess get data booking",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "array",
+                      "items":{
+                        "type": "object",
+                        "properties": {
+                          "id":{
+                            "type": "string"
+                          },
+                          "room":{
+                            "type": "object",
+                            "properties": {
+                              "id":{
+                                "type": "string"
+                              },
+                              "main_image":{
+                                "type": "string"
+                              },
+                              "price":{
+                                "type": "integer"
+                              },
+                              "homestay":{
+                                "type": "object",
+                                "properties": {
+                                  "id":{
+                                    "type": "string"
+                                  },
+                                  "name":{
+                                    "type": "string"
+                                  },
+                                  "rating":{
+                                    "type": "integer"
+                                  },
+                                  "address":{
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "fist_payment":{
+                            "type": "string"
+                          },
+                          "check_in":{
+                            "type": "string"
+                          },
+                          "check_out":{
+                            "type": "string"
+                          },
+                          "number_guest":{
+                            "type": "integer"
+                          },
+                          "number_guest_child":{
+                            "type": "integer"
+                          },
+                          "booking_status":{
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payments":{
+      "post":{
+        "description": "pay with bri",
+        "tags": ["payments", "[page] payments"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema":{
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody":{
+          "content": {
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "booking_id":{
+                    "type": "string"
+                  },
+                  "payment_method":{
+                    "description": "[bri, bni, bca, cimb]",
+                    "type": "string"
+                  },
+                  "payment_type":{
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "success payments",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "id":{
+                      "type": "string"
+                    },
+                    "order_id":{
+                      "type": "string"
+                    },
+                    "payment_code":{
+                      "type": "string"
+                    },
+                    "total_amount":{
+                      "type": "integer"
+                    },
+                    "status_payment":{
+                      "type": "string"
+                    },
+                    "payment_method":{
+                      "type": "string"
+                    },
+                    "payment_type":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payments/{order_id}/order":{
+      "get":{
+        "description": "pay with bri",
+        "tags": ["payments", "[page] payments"],
+        "responses": {
+          "200":{
+            "description": "succcess get payment by oder_id",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "id":{
+                          "type": "string"
+                        },
+                        "payment_type":{
+                          "type": "string"
+                        },
+                        "payment_code":{
+                          "type": "string"
+                        },
+                        "payment_method":{
+                          "type": "string"
+                        },
+                        "expired":{
+                          "type": "string"
+                        },
+                        "total_amount":{
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/current":{
+      "get":{
+        "description": "get current user",
+        "tags": ["users", "[page] booking"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema":{
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "success get detail user",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "id":{
+                      "type": "string"
+                    },
+                    "name":{
+                      "type": "string"
+                    },
+                    "email":{
+                      "type": "string"
+                    },
+                    "number_phone":{
+                      "type": "string"
+                    },
+                    "image_url":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "description": "edit current user",
+        "tags": ["users", "[page] booking"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema":{
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody":{
+          "content": {
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "number_phone":{
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "success update user",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "id":{
+                      "type": "string"
+                    },
+                    "name":{
+                      "type": "string"
+                    },
+                    "email":{
+                      "type": "string"
+                    },
+                    "number_phone":{
+                      "type": "string"
+                    },
+                    "image_url":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/favorite":{
+      "get":{
+        "description": "get favorite per user login",
+        "tags": ["favorite", "[page] favorite list"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema":{
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "success get data favorite",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "array",
+                      "items":{
+                        "type": "object",
+                        "properties": {
+                          "id":{
+                            "type": "string"
+                          },
+                          "name":{
+                            "type": "string"
+                          },
+                          "main_image":{
+                            "type": "string"
+                          },
+                          "address":{
+                            "type": "string"
+                          },
+                          "rating":{
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "description": "add favorite per user login",
+        "tags": ["favorite", "[page] detail homestay"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema":{
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody":{
+          "content": {
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "homestay_id":{
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "succcess add favorite",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "id":{
+                          "type": "string"
+                        },
+                        "user":{
+                          "type": "object",
+                          "properties": {
+                            "id":{
+                              "type": "string"
+                            },
+                            "name":{
+                              "type": "string"
+                            },
+                            "email":{
+                              "type": "string"
+                            },
+                            "number_phone":{
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "homestay":{
+                          "type": "object",
+                          "properties": {
+                            "id":{
+                              "type": "string"
+                            },
+                            "name":{
+                              "type": "string"
+                            },
+                            "main_image":{
+                              "type": "string"
+                            },
+                            "address":{
+                              "type": "string"
+                            },
+                            "rating":{
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
