@@ -9,30 +9,44 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id                Int       @id @default(autoincrement())
-  email             String    @unique @db.VarChar(255)
-  email_verified_at DateTime? @db.Timestamp(3)
-  password          String?   @db.VarChar(255)
-  google_id         String?   @db.VarChar(255)
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  email             String    @unique
+  email_verified_at DateTime?
+  password          String?
+  google_id         String?
   created_at        DateTime? @default(now())
   updated_at        DateTime? @updatedAt
+  customer          Customer?
 
   @@map("users")
 }
 
 model VerificationCode {
-  id                Int       @id @default(autoincrement())
-  email             String    @unique @db.VarChar(100)
-  otp               String    @db.VarChar(20)
-  expired_at        DateTime? @db.DateTime(3)
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  email             String    @unique
+  otp               String
+  expired_at        DateTime?
   is_email_verified Boolean   @default(false)
   created_at        DateTime? @default(now())
   updated_at        DateTime? @updatedAt
 
   @@map("verification_codes")
+}
+
+model Customer {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  first_name String
+  last_name  String?
+  phone      String?
+  address    String?
+  picture    String?
+  user_id    String  @unique @db.ObjectId
+  user       User    @relation(fields: [user_id], references: [id])
+
+  @@map("customers")
 }

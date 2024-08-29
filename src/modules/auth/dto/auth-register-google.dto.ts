@@ -1,8 +1,12 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class AuthGoogleDto {
+export class AuthRegisterGoogleDto {
   @IsNotEmpty()
   google_id: string;
   @IsNotEmpty()
   email: string;
+  @IsNotEmpty()
+  name: string;
+  @IsNotEmpty()
+  picture: string;
 }

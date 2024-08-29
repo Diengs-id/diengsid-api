@@ -3,7 +3,7 @@ import { AuthResponseDto } from './dto/auth-response.dto';
 import { AuthLoginDto } from './dto/auth-login.dto';
 import { PrismaService } from '../../common/prisma/prisma.service';
 import { HttpException, Inject, UnauthorizedException } from '@nestjs/common';
-import { AuthGoogleDto } from './dto/auth-google.dto';
+import { AuthRegisterGoogleDto } from './dto/auth-register-google.dto';
 import { AuthRegisterDto } from './dto/auth-register.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
@@ -23,7 +23,7 @@ export class AuthService implements AuthServiceInterface {
   @Inject()
   private emailService: EmailService;
 
-  async loginGoogle(authGoogleDto: AuthGoogleDto): Promise<AuthResponseDto> {
+  async loginGoogle(authGoogleDto: AuthRegisterGoogleDto): Promise<AuthResponseDto> {
     const user = await this.prismaService.user.findFirst({
       where: {
         email: authGoogleDto.email,
@@ -52,6 +52,17 @@ export class AuthService implements AuthServiceInterface {
       data: {
         email: authRegisterDto.email,
         password: passwordHash,
+        google_id: null,
+        email_verified_at: null,
+        customer: {
+          create: {
+            first_name: authRegisterDto.name,
+            last_name: null,
+            phone: null,
+            address: null,
+            picture: null,
+          },
+        },
       },
     });
 
@@ -63,7 +74,7 @@ export class AuthService implements AuthServiceInterface {
       token: token,
     };
   }
-  async registerGoogle(authGoogleDto: AuthGoogleDto): Promise<AuthResponseDto> {
+  async registerGoogle(authGoogleDto: AuthRegisterGoogleDto): Promise<AuthResponseDto> {
     const countUser = await this.prismaService.user.count({
       where: {
         OR: [
@@ -85,6 +96,17 @@ export class AuthService implements AuthServiceInterface {
       data: {
         email: authGoogleDto.email,
         google_id: authGoogleDto.google_id,
+        password: null,
+        email_verified_at: null,
+        customer: {
+          create: {
+            first_name: authGoogleDto.name,
+            last_name: null,
+            phone: null,
+            address: null,
+            picture: authGoogleDto.picture,
+          },
+        },
       },
     });
 

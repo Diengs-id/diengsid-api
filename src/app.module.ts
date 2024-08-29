@@ -5,6 +5,7 @@ import { PrismaModule } from './common/prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { HomestayModule } from './modules/homestay/homestay.module';
 import { EmailModule } from './common/email/email.module';
+import { UserController } from "./modules/user/user.controller";
 @Module({
   imports: [
     UserModule,

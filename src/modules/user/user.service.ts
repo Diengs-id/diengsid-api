@@ -1,4 +1,4 @@
-import { HttpException, Inject, Injectable } from "@nestjs/common";
+import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { UserServiceInterface } from './user-service.interface';
 import { PrismaService } from '../../common/prisma/prisma.service';
 import { UserResponseDto } from './dto/user-response.dto';
@@ -12,6 +12,9 @@ export class UserService implements UserServiceInterface {
       where: {
         email: email,
       },
+      include: {
+        customer: true,
+      },
     });
 
     if (!user) {
@@ -22,6 +25,7 @@ export class UserService implements UserServiceInterface {
       id: user.id,
       email: user.email,
       google_id: user.google_id,
+      name: user.customer.first_name,
     };
   }
 }

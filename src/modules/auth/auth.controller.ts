@@ -4,7 +4,7 @@ import { ApiResponse } from '../../common/responses/api-response';
 import { AuthResponseDto } from './dto/auth-response.dto';
 import { AuthService } from './auth.service';
 import { AuthRegisterDto } from './dto/auth-register.dto';
-import { AuthGoogleDto } from './dto/auth-google.dto';
+import { AuthRegisterGoogleDto } from './dto/auth-register-google.dto';
 import { AuthEmailVerifiedDto } from './dto/auth-email-verified.dto';
 import { AuthVerifyOtpDto } from './dto/auth-verify-otp.dto';
 
@@ -30,7 +30,7 @@ export class AuthController {
 
   @Post('/register/google')
   async registerGoogle(
-    @Body() authGoogleDto: AuthGoogleDto,
+    @Body() authGoogleDto: AuthRegisterGoogleDto,
   ): Promise<ApiResponse<AuthResponseDto>> {
     const result = await this.authService.registerGoogle(authGoogleDto);
     return ApiResponse.success(result, 'Register success');
@@ -38,7 +38,7 @@ export class AuthController {
 
   @Post('/login/google')
   async loginGoogle(
-    @Body() authGoogleDto: AuthGoogleDto,
+    @Body() authGoogleDto: AuthRegisterGoogleDto,
   ): Promise<ApiResponse<AuthResponseDto>> {
     const result = await this.authService.loginGoogle(authGoogleDto);
     return ApiResponse.success(result, 'Login google success');
