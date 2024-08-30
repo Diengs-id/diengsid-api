@@ -13,7 +13,7 @@ export class TestService {
   ) {
     await this.prismaService.customer.deleteMany({
       where: {
-        name: name,
+        customer_name: name,
       },
     });
     await this.prismaService.user.deleteMany({
@@ -37,7 +37,7 @@ export class TestService {
         google_id: 'test-google-id',
         customer: {
           create: {
-            name: 'test-name',
+            customer_name: 'test-name',
           },
         },
       },

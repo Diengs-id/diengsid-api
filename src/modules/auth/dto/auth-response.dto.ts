@@ -1,5 +1,5 @@
 export class AuthResponseDto {
-  id: string;
+  id: number;
   name: string;
   email: string;
   token: string;

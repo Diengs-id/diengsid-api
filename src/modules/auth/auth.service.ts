@@ -155,7 +155,7 @@ export class AuthService implements AuthServiceInterface {
         password: passwordHash,
         customer: {
           create: {
-            name: authRegisterDto.name,
+            customer_name: authRegisterDto.name,
           },
         },
       },
@@ -168,7 +168,7 @@ export class AuthService implements AuthServiceInterface {
 
     return {
       id: user.id,
-      name: user.customer.name,
+      name: user.customer.customer_name,
       email: user.email,
       token: token,
     };
@@ -200,7 +200,7 @@ export class AuthService implements AuthServiceInterface {
 
     return {
       id: user.id,
-      name: user.customer.name,
+      name: user.customer.customer_name,
       email: user.email,
       token: token,
     };
@@ -231,7 +231,7 @@ export class AuthService implements AuthServiceInterface {
         google_id: authGoogleDto.google_id,
         customer: {
           create: {
-            name: authGoogleDto.name,
+            customer_name: authGoogleDto.name,
             picture: authGoogleDto.picture,
           },
         },
@@ -245,7 +245,7 @@ export class AuthService implements AuthServiceInterface {
 
     return {
       id: user.id,
-      name: user.customer.name,
+      name: user.customer.customer_name,
       email: user.email,
       picture: user.customer.picture,
       google_id: user.google_id,
@@ -273,7 +273,7 @@ export class AuthService implements AuthServiceInterface {
 
     return {
       id: user.id,
-      name: user.customer.name,
+      name: user.customer.customer_name,
       email: user.email,
       token: token,
     };

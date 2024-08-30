@@ -1,53 +1,4 @@
-POST http://localhost:3000/api/auth/register
-Content-Type: application/json
-
-{
-  "email": "rifai@gmail.com",
-  "password": "rahasia",
-  "name" : "Ahmad Rifai"
-}
-
-###
-
-POST http://localhost:3000/api/auth/login
-Content-Type: application/json
-
-{
-  "email": "rifai@gmail.com",
-  "password": "rahasia"
-}
-
-###
-
-POST http://localhost:3000/api/auth/register/google
-Content-Type: application/json
-
-{
-  "email": "rifai111@mail.com",
-  "google_id": "sasa",
-  "name": "ahmad",
-  "picture": "http:puctyre.com/p.png"
-}
-
-###
-
-POST http://localhost:3000/api/auth/login/google
-Content-Type: application/json
-
-{
-  "email": "rifai21@mail.com",
-  "google_id": "test"
-}
-
-###
-
-GET http://localhost:3000/api/users/current
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDAyMDJkZjlmNDczNDZiODFjYzY3NSIsImVtYWlsIjoicmlmYWkxMTFAbWFpbC5jb20iLCJpYXQiOjE3MjQ5MTU3NTcsImV4cCI6MTcyNDkxOTM1N30.K4xoPq84v8c9jKoP78EDlWYOcOW6hFDD008U-dlfON0
-
-
-###
-POST http://localhost:3000/api/auth/email-verified
+POST http://localhost:3000/api/auth/email-verify
 Content-Type: application/json
 
 {
@@ -70,5 +21,57 @@ Content-Type: application/json
 
 {
   "email": "ahmmd.riffai@gmail.com",
-  "otp" : "905882"
+  "otp" : "896564"
 }
+
+###
+
+
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "ahmmd.riffai@gmail.com",
+  "password": "rahasia",
+  "name" : "Ahmad Rifai"
+}
+
+###
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ahmmd.riffai@gmail.com",
+  "password": "rahasia"
+}
+
+###
+
+POST http://localhost:3000/api/auth/register/google
+Content-Type: application/json
+
+{
+  "email": "rifai111@mail.com",
+  "google_id": "sasa",
+  "name": "ahmad",
+  "picture": "http:puctyre.com/p.png"
+}
+
+###
+
+POST http://localhost:3000/api/auth/login/google
+Content-Type: application/json
+
+{
+  "email": "rifai111@mail.com",
+  "google_id": "sasa"
+}
+
+###
+
+GET http://localhost:3000/api/users/current
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjQsImVtYWlsIjoiYWhtbWQucmlmZmFpQGdtYWlsLmNvbSIsImlhdCI6MTcyNTAwMDMwNSwiZXhwIjoxNzI1MDAzOTA1fQ.E8fEHensAMfrcr34s7KpLv3mK7mpIdzBLwpHIH4te8Q
+###
+

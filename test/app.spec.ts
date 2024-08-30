@@ -216,6 +216,10 @@ describe('Auth Controller', () => {
   });
 
   describe('POST /api/auth/login/google', () => {
+    beforeEach(async () => {
+      await testService.deleteUser();
+    });
+
     it('should be reject if request is invalid', async () => {
       const requests = [
         { email: '', google_id: 'test-password' },
