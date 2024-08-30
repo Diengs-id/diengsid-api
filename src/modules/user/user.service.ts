@@ -25,7 +25,7 @@ export class UserService implements UserServiceInterface {
       id: user.id,
       email: user.email,
       google_id: user.google_id,
-      name: user.customer.first_name,
+      name: user.customer.name,
     };
   }
 }

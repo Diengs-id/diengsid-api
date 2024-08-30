@@ -2,7 +2,7 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "",
+  "email": "rifai@gmail.com",
   "password": "rahasia",
   "name" : "Ahmad Rifai"
 }
@@ -13,7 +13,7 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "rifai@mail.com",
+  "email": "rifai@gmail.com",
   "password": "rahasia"
 }
 

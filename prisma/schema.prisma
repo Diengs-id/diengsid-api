@@ -39,14 +39,13 @@ model VerificationCode {
 }
 
 model Customer {
-  id         String  @id @default(auto()) @map("_id") @db.ObjectId
-  first_name String
-  last_name  String?
-  phone      String?
-  address    String?
-  picture    String?
-  user_id    String  @unique @db.ObjectId
-  user       User    @relation(fields: [user_id], references: [id])
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  phone   String?
+  address String?
+  picture String?
+  user_id String  @unique @db.ObjectId
+  user    User    @relation(fields: [user_id], references: [id])
 
   @@map("customers")
 }
