@@ -2,8 +2,9 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "rifai@mail.com",
-  "password": "rahasia"
+  "email": "rifai@gmail.com",
+  "password": "rahasia",
+  "name" : "Ahmad Rifai"
 }
 
 ###
@@ -12,7 +13,7 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "rifai@mail.com",
+  "email": "rifai@gmail.com",
   "password": "rahasia"
 }
 
@@ -22,8 +23,10 @@ POST http://localhost:3000/api/auth/register/google
 Content-Type: application/json
 
 {
-  "email": "rifai21@mail.com",
-  "google_id": "test"
+  "email": "rifai111@mail.com",
+  "google_id": "sasa",
+  "name": "ahmad",
+  "picture": "http:puctyre.com/p.png"
 }
 
 ###
@@ -40,8 +43,7 @@ Content-Type: application/json
 
 GET http://localhost:3000/api/users/current
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJyaWZhaTIxQG1haWwuY29tIiwiaWF0IjoxNzI0ODE5NTkxLCJleHAiOjE3MjQ4MTk2NTF9.9wL5jx5GduVN3_JowuYOSMFCbfXOTUxoAy-fcb972YI
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDAyMDJkZjlmNDczNDZiODFjYzY3NSIsImVtYWlsIjoicmlmYWkxMTFAbWFpbC5jb20iLCJpYXQiOjE3MjQ5MTU3NTcsImV4cCI6MTcyNDkxOTM1N30.K4xoPq84v8c9jKoP78EDlWYOcOW6hFDD008U-dlfON0
 
 
 ###
@@ -49,7 +51,7 @@ POST http://localhost:3000/api/auth/email-verified
 Content-Type: application/json
 
 {
-  "email": "rifai@mail.com"
+  "email": "ahmmd.riffai@mail.com"
 }
 
 ###
@@ -58,7 +60,7 @@ POST http://localhost:3000/api/auth/send-otp
 Content-Type: application/json
 
 {
-  "email": "rifai2@mail.com"
+  "email": "ahmmd.riffai@gmail.com"
 }
 
 ###
@@ -67,6 +69,6 @@ POST http://localhost:3000/api/auth/verify-otp
 Content-Type: application/json
 
 {
-  "email": "rifai2@mail.com",
-  "otp" : "644102"
+  "email": "ahmmd.riffai@gmail.com",
+  "otp" : "905882"
 }
