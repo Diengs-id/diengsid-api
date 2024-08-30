@@ -49,3 +49,15 @@ model Customer {
 
   @@map("customers")
 }
+
+model Homestay {
+  id            String  @id @default(uuid())
+  homestay_name String
+  location_id   String
+  owner         String
+  description   String? @db.Text
+  main_image    String?
+  phone         String
+
+  @@map("homestays")
+}
