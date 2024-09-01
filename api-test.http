@@ -72,6 +72,7 @@ Content-Type: application/json
 
 GET http://localhost:3000/api/users/current
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjQsImVtYWlsIjoiYWhtbWQucmlmZmFpQGdtYWlsLmNvbSIsImlhdCI6MTcyNTAwMDMwNSwiZXhwIjoxNzI1MDAzOTA1fQ.E8fEHensAMfrcr34s7KpLv3mK7mpIdzBLwpHIH4te8Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJyaWZhaTExMUBtYWlsLmNvbSIsImlhdCI6MTcyNTIwMjE2OSwiZXhwIjoxNzI1MjA1NzY5fQ.z0R9Sj9LW0SUAt3_q_qQAXCT6GUKSJoD3qAJxvORNps
 ###
 
+GET http://localhost:3000/api/homestays

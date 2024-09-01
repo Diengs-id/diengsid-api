@@ -22,6 +22,7 @@ model User {
   customer          Customer?
   created_at        DateTime? @default(now())
   updated_at        DateTime? @updatedAt
+  review            Review[]
 
   @@map("users")
 }
@@ -51,13 +52,109 @@ model Customer {
 }
 
 model Homestay {
-  id            String  @id @default(uuid())
-  homestay_name String
-  location_id   String
-  owner         String
-  description   String? @db.Text
-  main_image    String?
-  phone         String
+  id              String                @id @default(uuid())
+  homestay_name   String
+  owner           String
+  description     String?               @db.Text
+  main_image      String?
+  phone           String
+  location_id     String?               @unique
+  location        Location?             @relation(fields: [location_id], references: [id])
+  destinations    DestinationHomestay[]
+  amenities       AmenityHomestay[]
+  image_homestays ImageHomestay[]
+  review          Review[]
+  categories      CategoryHomestay[]
 
   @@map("homestays")
+}
+
+model Amenity {
+  id               String            @id @default(uuid())
+  amenity_name     String
+  icon             String
+  amenity_homestay AmenityHomestay[]
+
+  @@map("amenities")
+}
+
+model AmenityHomestay {
+  amenity_id  String
+  homestay_id String
+  amenity     Amenity?  @relation(fields: [amenity_id], references: [id])
+  homestay    Homestay? @relation(fields: [homestay_id], references: [id])
+
+  @@id([amenity_id, homestay_id])
+}
+
+model Location {
+  id          String       @id @default(uuid())
+  address     String
+  latitude    Float
+  longitude   Float
+  homestay    Homestay?
+  destination Destination?
+
+  @@map("locations")
+}
+
+model Destination {
+  id               String                @id @default(uuid())
+  destination_name String
+  description      String
+  location_id      String                @unique
+  location         Location              @relation(fields: [location_id], references: [id])
+  homestays        DestinationHomestay[]
+  homestayId       String?
+
+  @@map("destinations")
+}
+
+model DestinationHomestay {
+  homestay_id    String
+  destination_id String
+  distance       Float
+  homestay       Homestay?    @relation(fields: [homestay_id], references: [id])
+  destination    Destination? @relation(fields: [destination_id], references: [id])
+
+  @@id([homestay_id, destination_id])
+  @@map("destination_homestays")
+}
+
+model ImageHomestay {
+  id          String    @id @default(uuid())
+  image       String
+  homestay_id String
+  homestay    Homestay? @relation(fields: [homestayId], references: [id])
+  homestayId  String
+
+  @@map("image_homestays")
+}
+
+model Review {
+  user_id     Int
+  homestay_id String
+  rating      Float
+  comment     String?
+  user        User?     @relation(fields: [user_id], references: [id])
+  homestay    Homestay? @relation(fields: [homestay_id], references: [id])
+
+  @@id([user_id, homestay_id])
+  @@map("reviews")
+}
+
+model Category {
+  id        Int                @id @default(autoincrement())
+  name      String
+  icon      String
+  homestays CategoryHomestay[]
+}
+
+model CategoryHomestay {
+  category_id Int
+  homestay_id String
+  homestay    Homestay? @relation(fields: [homestay_id], references: [id])
+  category    Category? @relation(fields: [category_id], references: [id])
+
+  @@id([category_id, homestay_id])
 }

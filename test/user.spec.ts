@@ -4,7 +4,6 @@ import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { TestService } from './test.service';
 import { TestModule } from './test.module';
-import supertest from 'supertest';
 
 describe('Auth Controller', () => {
   let app: INestApplication;
