@@ -63,8 +63,9 @@ model Homestay {
   destinations    DestinationHomestay[]
   amenities       AmenityHomestay[]
   image_homestays ImageHomestay[]
-  review          Review[]
+  reviews         Review[]
   categories      CategoryHomestay[]
+  rooms           Room[]
 
   @@map("homestays")
 }
@@ -156,4 +157,24 @@ model CategoryHomestay {
   category    Category? @relation(fields: [category_id], references: [id])
 
   @@id([category_id, homestay_id])
+}
+
+model Room {
+  id          String    @id @default(uuid())
+  room_name   String
+  price       Float
+  description String    @db.Text
+  main_image  String
+  capacity    Int
+  discount    Float // nilai discount dalam (%)
+  room_type   RoomType
+  homestay_id String
+  homestay    Homestay? @relation(fields: [homestay_id], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+enum RoomType {
+  standar
+  fullhouse
 }

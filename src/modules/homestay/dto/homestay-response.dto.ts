@@ -1,4 +1,4 @@
-import { Destination, Review } from '@prisma/client';
+import { Destination, Review, Room } from '@prisma/client';
 
 export class HomestayResponseDto {
   id: string;
@@ -11,6 +11,7 @@ export class HomestayResponseDto {
   amenities?: [];
   destinations?: Destination;
   reviews?: Review;
+  rooms?: Room;
 }
 
 export class LocationResponseDto {

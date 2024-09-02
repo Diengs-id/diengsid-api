@@ -65,7 +65,7 @@ export class HomestayService implements HomestayServiceInteface {
       },
       include: {
         location: true,
-        review: true,
+        reviews: true,
         image_homestays: true,
       },
       take: homestaySearchRequest.size,
@@ -95,7 +95,7 @@ export class HomestayService implements HomestayServiceInteface {
         id: id,
       },
       include: {
-        review: {
+        reviews: {
           include: {
             user: true,
           },
@@ -104,6 +104,7 @@ export class HomestayService implements HomestayServiceInteface {
         amenities: true,
         image_homestays: true,
         location: true,
+        rooms: true,
       },
     });
 
@@ -126,7 +127,8 @@ export class HomestayService implements HomestayServiceInteface {
       image_homestay: homestay.image_homestays.map((img) => img.image),
       total_rating: homestay.review.reduce((p, c) => p + c.rating, 0),
       destinations: homestay.destinations,
-      reviews: homestay.review,
+      reviews: homestay.reviews,
+      rooms: homestay.rooms,
     };
   }
 }
