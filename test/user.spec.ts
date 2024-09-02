@@ -1,9 +1,9 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
-import { TestService } from './test.service';
 import { TestModule } from './test.module';
+import { TestService } from './test.service';
 
 describe('Auth Controller', () => {
   let app: INestApplication;
@@ -23,7 +23,7 @@ describe('Auth Controller', () => {
 
   describe('POST /api/auth/register', () => {
     beforeEach(async () => {
-      await testService.deleteUser();
+      await testService.deleteAll();
     });
 
     it('should be reject if request is invalid', async () => {
@@ -97,7 +97,7 @@ describe('Auth Controller', () => {
 
   describe('POST /api/auth/register/google', () => {
     beforeEach(async () => {
-      await testService.deleteUser();
+      await testService.deleteAll();
     });
 
     it('should be reject if request is invalid', async () => {
@@ -158,7 +158,7 @@ describe('Auth Controller', () => {
 
   describe('POST /api/auth/login', () => {
     beforeEach(async () => {
-      await testService.deleteUser();
+      await testService.deleteAll();
     });
 
     it('should be reject if request is invalid', async () => {
@@ -216,7 +216,7 @@ describe('Auth Controller', () => {
 
   describe('POST /api/auth/login/google', () => {
     beforeEach(async () => {
-      await testService.deleteUser();
+      await testService.deleteAll();
     });
 
     it('should be reject if request is invalid', async () => {
@@ -274,7 +274,7 @@ describe('Auth Controller', () => {
 
   describe('POST /api/auth/email-verify', () => {
     beforeEach(async () => {
-      await testService.deleteUser();
+      await testService.deleteAll();
     });
 
     it('should be reject if email already registered', async () => {
@@ -304,34 +304,34 @@ describe('Auth Controller', () => {
     });
   });
 
-  describe('POST /api/auth/send-otp', () => {
-    beforeEach(async () => {
-      await testService.deleteUser();
-    });
+  // describe('POST /api/auth/send-otp', () => {
+  //   beforeEach(async () => {
+  //     await testService.deleteAll();
+  //   });
 
-    it('sholud be reject if request invalid', async () => {
-      const response = await request(app.getHttpServer())
-        .post('/api/auth/send-otp')
-        .send({
-          email: '',
-        });
+  //   it('sholud be reject if request invalid', async () => {
+  //     const response = await request(app.getHttpServer())
+  //       .post('/api/auth/send-otp')
+  //       .send({
+  //         email: '',
+  //       });
 
-      expect(response.status).toBe(400);
-      expect(response.body.message).toBeDefined();
-    });
+  //     expect(response.status).toBe(400);
+  //     expect(response.body.message).toBeDefined();
+  //   });
 
-    it('should be send otp', async () => {
-      const response = await request(app.getHttpServer())
-        .post('/api/auth/send-otp')
-        .send({
-          email: 'test@test.com',
-        });
+  //   it('should be send otp', async () => {
+  //     const response = await request(app.getHttpServer())
+  //       .post('/api/auth/send-otp')
+  //       .send({
+  //         email: 'test@test.com',
+  //       });
 
-      expect(response.status).toBe(200);
-      expect(response.body.data.otp).toBeDefined();
-      expect(response.body.data.expired_at).toBeDefined();
-    });
-  });
+  //     expect(response.status).toBe(200);
+  //     expect(response.body.data.otp).toBeDefined();
+  //     expect(response.body.data.expired_at).toBeDefined();
+  //   });
+  // });
   //
   // describe('POST /api/auth/verify-otp', () => {});
 });

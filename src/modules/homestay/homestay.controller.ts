@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Query } from '@nestjs/common';
+import { Controller, Get, Inject, Param, Query } from '@nestjs/common';
 import { ApiResponse } from '../../common/responses/api-response';
 import { HomestaySearchRequest } from './dto/homestay-request.dto';
 import { HomestayService } from './homestay.service';
@@ -15,5 +15,11 @@ export class HomestayController {
       result.homestayResponseDto,
       result.paging,
     );
+  }
+
+  @Get('/:id_homestay')
+  async get(@Param('id') id: string) {
+    const result = await this.homestayService.get(id);
+    return ApiResponse.success(result);
   }
 }

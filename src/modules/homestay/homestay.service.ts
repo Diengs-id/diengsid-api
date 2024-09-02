@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { PrismaService } from '../../common/prisma/prisma.service';
 import { Paging } from '../../common/responses/api-response';
 import { HomestaySearchRequest } from './dto/homestay-request.dto';
@@ -80,10 +80,7 @@ export class HomestayService implements HomestayServiceInteface {
 
     return {
       homestayResponseDto: homestays.map((homestay) => {
-        return this.toHomestayResponse(
-          homestay,
-          homestay.review.reduce((p, c) => p + c.rating, 0),
-        );
+        return this.toHomestayResponse(homestay);
       }),
       paging: {
         current_page: homestaySearchRequest.page,
@@ -92,8 +89,34 @@ export class HomestayService implements HomestayServiceInteface {
       },
     };
   }
+  async get(id: string): Promise<HomestayResponseDto> {
+    const homestay = await this.prismaService.homestay.findFirst({
+      where: {
+        id: id,
+      },
+      include: {
+        review: {
+          include: {
+            user: true,
+          },
+        },
+        destinations: true,
+        amenities: true,
+        image_homestays: true,
+        location: true,
+      },
+    });
 
-  toHomestayResponse(homestay, rating: number = 0): HomestayResponseDto {
+    console.log(homestay);
+
+    if (!homestay) {
+      throw new HttpException('Homestay tidak ditemukan', 404);
+    }
+
+    return this.toHomestayResponse(homestay);
+  }
+
+  toHomestayResponse(homestay): HomestayResponseDto {
     return {
       id: homestay.id,
       homestay_name: homestay.homestay_name,
@@ -101,7 +124,9 @@ export class HomestayService implements HomestayServiceInteface {
       description: homestay.description,
       location: homestay.location,
       image_homestay: homestay.image_homestays.map((img) => img.image),
-      rating: rating,
+      total_rating: homestay.review.reduce((p, c) => p + c.rating, 0),
+      destinations: homestay.destinations,
+      reviews: homestay.review,
     };
   }
 }

@@ -76,3 +76,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiO
 ###
 
 GET http://localhost:2000/api/homestays?size=20&destination=1
+
+###
+
+
+GET http://localhost:2000/api/homestays/1e99dff5-a305-4b13-99bf-1ceb0bd43466
