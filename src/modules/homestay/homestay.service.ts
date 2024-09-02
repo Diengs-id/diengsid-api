@@ -35,7 +35,9 @@ export class HomestayService implements HomestayServiceInteface {
       filters.push({
         amenities: {
           some: {
-            amenity: homestaySearchRequest.amenity,
+            amenity: {
+              contains: homestaySearchRequest.amenity,
+            },
           },
         },
       });
@@ -46,7 +48,9 @@ export class HomestayService implements HomestayServiceInteface {
         destinations: {
           some: {
             destination: {
-              destination_name: homestaySearchRequest.destination,
+              destination_name: {
+                contains: homestaySearchRequest.destination,
+              },
             },
           },
         },
@@ -62,6 +66,7 @@ export class HomestayService implements HomestayServiceInteface {
       include: {
         location: true,
         review: true,
+        image_homestays: true,
       },
       take: homestaySearchRequest.size,
       skip: skip,
@@ -94,11 +99,8 @@ export class HomestayService implements HomestayServiceInteface {
       homestay_name: homestay.homestay_name,
       main_image: homestay.main_image,
       description: homestay.description,
-      location: {
-        latitude: homestay.location.latitude,
-        longitude: homestay.location.longitude,
-        address: homestay.location.longitude,
-      },
+      location: homestay.location,
+      image_homestay: homestay.image_homestays.map((img) => img.image),
       rating: rating,
     };
   }

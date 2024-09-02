@@ -5,6 +5,7 @@ export class HomestayResponseDto {
   description: string;
   main_image: string;
   rating: number;
+  image_homestay: [];
 }
 
 export class LocationResponseDto {

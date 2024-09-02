@@ -1,7 +1,7 @@
-import { HomestaySearchRequest } from './dto/homestay-request.dto';
-import { Controller, Get, Inject, Query } from "@nestjs/common";
-import { HomestayService } from './homestay.service';
+import { Controller, Get, Inject, Query } from '@nestjs/common';
 import { ApiResponse } from '../../common/responses/api-response';
+import { HomestaySearchRequest } from './dto/homestay-request.dto';
+import { HomestayService } from './homestay.service';
 
 @Controller('/api/homestays')
 export class HomestayController {

@@ -8,10 +8,14 @@ export class TestService {
   private readonly prismaService: PrismaService;
 
   async deleteAll() {
-    // await this.deleteCustomer();
-    // await this.deleteUser();
-    // await this.deleteverificationCode();
-    // await this.deleteHomestay();
+    await this.prismaService.$executeRaw`SET FOREIGN_KEY_CHECKS = 0;`;
+    await this.deleteCustomer();
+    await this.deleteReview();
+    await this.deleteDestinationHomestay();
+    await this.deleteUser();
+    await this.deleteverificationCode();
+    await this.deleteHomestay();
+    await this.prismaService.$executeRaw`SET FOREIGN_KEY_CHECKS = 1;`;
   }
   async deleteUser() {
     await this.prismaService.user.deleteMany({});
@@ -26,9 +30,18 @@ export class TestService {
     await this.prismaService.homestay.deleteMany({});
   }
 
-  async deleteDestination() {
+  async deleteDestinationHomestay() {
+    await this.prismaService.destinationHomestay.deleteMany({});
+  }
+
+  async deleteReview() {
+    await this.prismaService.review.deleteMany({});
+  }
+
+  async delete() {
     await this.prismaService.destination.deleteMany({});
   }
+
   async createUser(email: string = 'test@test.com') {
     await this.prismaService.user.create({
       data: {
@@ -57,56 +70,83 @@ export class TestService {
     });
   }
 
-  async createHomestay() {
-    await this.prismaService.homestay.create({
-      data: {
-        homestay_name: 'test-homestay-name',
-        description: 'test-description',
-        location: {
-          create: {
-            latitude: 10.0,
-            longitude: 10.0,
-            address: 'test-address',
+  async createHomestay(ittarate = 1) {
+    for (let i = 0; i < ittarate; i++) {
+      await this.prismaService.homestay.create({
+        data: {
+          homestay_name: `test-homestay-name ${i}`,
+          description: `test-description ${i}`,
+          location: {
+            create: {
+              latitude: 10.0,
+              longitude: 10.0,
+              address: 'test-address',
+            },
           },
-        },
-        main_image: 'test-main-image',
-        phone: 'test-phone',
-        owner: 'test-owner',
-        destinations: {
-          create: [
-            {
-              distance: 100,
-              destination: {
-                create: {
-                  destination_name: 'test-destination-name',
-                  description: 'test-description-des',
-                  location: {
-                    create: {
-                      address: 'test-loc-address',
-                      longitude: 10,
-                      latitude: 10,
+          main_image: `test-main-image ${i}`,
+          phone: `test-phone ${i}`,
+          owner: `test-owner ${i}`,
+          destinations: {
+            create: [
+              {
+                distance: 100,
+                destination: {
+                  create: {
+                    destination_name: `test-destination-name ${i}`,
+                    description: 'test-description-des',
+                    location: {
+                      create: {
+                        address: 'test-loc-address',
+                        longitude: 10,
+                        latitude: 10,
+                      },
                     },
                   },
                 },
               },
-            },
-          ],
-        },
-        review: {
-          create: [
-            {
-              rating: 5,
-              comment: 'Hai',
-              user: {
-                create: {
-                  email: 'test@maffl.cdd',
-                  google_id: 'tesy',
+            ],
+          },
+          review: {
+            create: [
+              {
+                rating: 5,
+                comment: 'Hai',
+                user: {
+                  create: {
+                    email: `test${i}@test.com`,
+                    google_id: 'tesy',
+                  },
                 },
               },
-            },
-          ],
+            ],
+          },
+          amenities: {
+            create: [
+              {
+                amenity: {
+                  create: {
+                    amenity_name: `amenity name ${i}`,
+                    icon: `icon ${i}`,
+                  },
+                },
+              },
+            ],
+          },
+          image_homestays: {
+            create: [
+              {
+                image: `image-homestay${i}-1`,
+              },
+              {
+                image: 'image-homestay${i}-1',
+              },
+              {
+                image: 'image-homestay${i}-1',
+              },
+            ],
+          },
         },
-      },
-    });
+      });
+    }
   }
 }

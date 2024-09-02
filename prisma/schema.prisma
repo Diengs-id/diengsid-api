@@ -85,6 +85,7 @@ model AmenityHomestay {
   homestay    Homestay? @relation(fields: [homestay_id], references: [id])
 
   @@id([amenity_id, homestay_id])
+  @@map("amenity_homestays")
 }
 
 model Location {
@@ -105,7 +106,6 @@ model Destination {
   location_id      String                @unique
   location         Location              @relation(fields: [location_id], references: [id])
   homestays        DestinationHomestay[]
-  homestayId       String?
 
   @@map("destinations")
 }
@@ -125,8 +125,7 @@ model ImageHomestay {
   id          String    @id @default(uuid())
   image       String
   homestay_id String
-  homestay    Homestay? @relation(fields: [homestayId], references: [id])
-  homestayId  String
+  homestay    Homestay? @relation(fields: [homestay_id], references: [id])
 
   @@map("image_homestays")
 }

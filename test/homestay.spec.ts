@@ -24,7 +24,7 @@ describe('Homestay Controller', () => {
   describe('GET /api/homestays', () => {
     beforeEach(async () => {
       await testService.deleteAll();
-      await testService.createHomestay();
+      await testService.createHomestay(100);
     });
     it('should can search by name', async () => {
       const response = await request(app.getHttpServer()).get('/api/homestays');

@@ -75,4 +75,4 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJyaWZhaTExMUBtYWlsLmNvbSIsImlhdCI6MTcyNTIwMjE2OSwiZXhwIjoxNzI1MjA1NzY5fQ.z0R9Sj9LW0SUAt3_q_qQAXCT6GUKSJoD3qAJxvORNps
 ###
 
-GET http://localhost:3000/api/homestays
+GET http://localhost:2000/api/homestays?size=20&destination=1
