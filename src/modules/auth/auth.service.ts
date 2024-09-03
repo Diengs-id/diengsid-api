@@ -1,17 +1,17 @@
-import { AuthServiceInterface } from './auth-service.interface';
-import { AuthResponseDto } from './dto/auth-response.dto';
-import { AuthLoginDto } from './dto/auth-login.dto';
-import { PrismaService } from '../../common/prisma/prisma.service';
 import { HttpException, Inject, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+import * as moment from 'moment';
+import * as otpGenerator from 'otp-generator';
+import { EmailService } from '../../common/email/email.service';
+import { PrismaService } from '../../common/prisma/prisma.service';
+import { AuthServiceInterface } from './auth-service.interface';
+import { AuthEmailVerifiedDto } from './dto/auth-email-verified.dto';
+import { AuthLoginDto } from './dto/auth-login.dto';
 import { AuthRegisterGoogleDto } from './dto/auth-register-google.dto';
 import { AuthRegisterDto } from './dto/auth-register.dto';
-import * as bcrypt from 'bcrypt';
-import { JwtService } from '@nestjs/jwt';
-import { AuthEmailVerifiedDto } from './dto/auth-email-verified.dto';
-import * as otpGenerator from 'otp-generator';
+import { AuthResponseDto } from './dto/auth-response.dto';
 import { AuthVerifyOtpDto } from './dto/auth-verify-otp.dto';
-import * as moment from 'moment';
-import { EmailService } from '../../common/email/email.service';
 import { AuthLoginGoogleDto } from './dto/auth.login-google.dto';
 
 export class AuthService implements AuthServiceInterface {
@@ -31,7 +31,10 @@ export class AuthService implements AuthServiceInterface {
     });
 
     if (countUser !== 0) {
-      throw new HttpException('User already registered', 400);
+      throw new HttpException(
+        'Waduh, emailnya udah terdaftar nih! Coba login atau pake email lain!',
+        400,
+      );
     }
 
     return true;
@@ -108,9 +111,15 @@ export class AuthService implements AuthServiceInterface {
     const now = moment();
 
     if (!verificationCode) {
-      throw new HttpException('Your OTP is not correct', 400);
+      throw new HttpException(
+        'Yah, OTP-nya salah nih! Coba dicek lagi ya!',
+        400,
+      );
     } else if (now.isAfter(verificationCode.expired_at)) {
-      throw new HttpException('Your OTP has been expired', 400);
+      throw new HttpException(
+        'Waduh, OTP-nya udah expired nih! Minta yang baru aja ya!',
+        400,
+      );
     }
 
     await this.prismaService.verificationCode.update({
@@ -144,7 +153,10 @@ export class AuthService implements AuthServiceInterface {
       });
 
     if (emailIsVerifiedCount === 0) {
-      throw new HttpException('Email not verified', 400);
+      throw new HttpException(
+        'Yoo, emailnya belum diverifikasi nih! Cek inbox dulu ya!',
+        400,
+      );
     }
 
     const passwordHash = await bcrypt.hash(authRegisterDto.password, 10);
@@ -184,7 +196,10 @@ export class AuthService implements AuthServiceInterface {
     });
 
     if (!user) {
-      throw new HttpException('email or password not corect', 401);
+      throw new HttpException(
+        'Waduh, email atau password-nya salah nih! Coba dicek lagi!',
+        401,
+      );
     }
 
     const isPasswordValid = await bcrypt.compare(
@@ -193,7 +208,10 @@ export class AuthService implements AuthServiceInterface {
     );
 
     if (!isPasswordValid) {
-      throw new HttpException('email or password not corect', 401);
+      throw new HttpException(
+        'Waduh, email atau password-nya salah nih! Coba dicek lagi',
+        401,
+      );
     }
 
     const token = await this.generateToken(user);
@@ -222,7 +240,10 @@ export class AuthService implements AuthServiceInterface {
     });
 
     if (countUser !== 0) {
-      throw new HttpException('User already registered', 400);
+      throw new HttpException(
+        'Waduh, emailnya udah terdaftar nih! Coba login atau pake email lain!',
+        400,
+      );
     }
 
     const user = await this.prismaService.user.create({

@@ -9,6 +9,10 @@ describe('Auth Controller', () => {
   let app: INestApplication;
   let testService: TestService;
 
+  afterEach(async () => {
+    await testService.deleteAll();
+  });
+
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule, TestModule],
@@ -22,7 +26,7 @@ describe('Auth Controller', () => {
   });
 
   describe('POST /api/auth/register', () => {
-    beforeEach(async () => {
+    afterEach(async () => {
       await testService.deleteAll();
     });
 
@@ -96,7 +100,7 @@ describe('Auth Controller', () => {
   });
 
   describe('POST /api/auth/register/google', () => {
-    beforeEach(async () => {
+    afterEach(async () => {
       await testService.deleteAll();
     });
 
@@ -157,7 +161,7 @@ describe('Auth Controller', () => {
   });
 
   describe('POST /api/auth/login', () => {
-    beforeEach(async () => {
+    afterEach(async () => {
       await testService.deleteAll();
     });
 
@@ -215,7 +219,7 @@ describe('Auth Controller', () => {
   });
 
   describe('POST /api/auth/login/google', () => {
-    beforeEach(async () => {
+    afterEach(async () => {
       await testService.deleteAll();
     });
 
@@ -273,7 +277,7 @@ describe('Auth Controller', () => {
   });
 
   describe('POST /api/auth/email-verify', () => {
-    beforeEach(async () => {
+    afterEach(async () => {
       await testService.deleteAll();
     });
 

@@ -1,4 +1,5 @@
 import { HttpException, Inject, Injectable } from '@nestjs/common';
+import { ImageHomestay, Review } from '@prisma/client';
 import { PrismaService } from '../../common/prisma/prisma.service';
 import { Paging } from '../../common/responses/api-response';
 import { HomestaySearchRequest } from './dto/homestay-request.dto';
@@ -124,8 +125,13 @@ export class HomestayService implements HomestayServiceInteface {
       main_image: homestay.main_image,
       description: homestay.description,
       location: homestay.location,
-      image_homestay: homestay.image_homestays.map((img) => img.image),
-      total_rating: homestay.review.reduce((p, c) => p + c.rating, 0),
+      image_homestay: homestay.image_homestays.map(
+        (img: ImageHomestay) => img.image,
+      ),
+      total_rating: homestay.reviews.reduce(
+        (p: number, c: Review) => p + c.rating,
+        0,
+      ),
       destinations: homestay.destinations,
       reviews: homestay.reviews,
       rooms: homestay.rooms,

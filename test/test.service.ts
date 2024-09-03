@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../src/common/prisma/prisma.service';
 
@@ -7,15 +8,21 @@ export class TestService {
   @Inject()
   private readonly prismaService: PrismaService;
 
+  @Inject()
+  private jwtService: JwtService;
+
   async deleteAll() {
     await this.prismaService.$executeRaw`SET FOREIGN_KEY_CHECKS = 0;`;
     await this.deleteCustomer();
     await this.deleteReview();
     await this.deleteDestinationHomestay();
-    await this.deleteUser();
     await this.deleteverificationCode();
     await this.deleteHomestay();
+    await this.deleteUser();
     await this.prismaService.$executeRaw`SET FOREIGN_KEY_CHECKS = 1;`;
+  }
+  async deleteBooking() {
+    await this.prismaService.booking.deleteMany({});
   }
   async deleteUser() {
     await this.prismaService.user.deleteMany({});
@@ -43,7 +50,7 @@ export class TestService {
   }
 
   async createUser(email: string = 'test@test.com') {
-    await this.prismaService.user.create({
+    return this.prismaService.user.create({
       data: {
         email: email,
         password: await bcrypt.hash('test-password', 10),
@@ -51,6 +58,7 @@ export class TestService {
         customer: {
           create: {
             customer_name: 'test-name',
+            phone: '085155380996',
           },
         },
       },
@@ -106,7 +114,7 @@ export class TestService {
               },
             ],
           },
-          review: {
+          reviews: {
             create: [
               {
                 rating: 5,
@@ -148,5 +156,34 @@ export class TestService {
         },
       });
     }
+  }
+
+  async createRoom() {
+    return this.prismaService.room.create({
+      data: {
+        room_name: 'room A',
+        capacity: 10,
+        description: 'test-descripsi',
+        discount: 4,
+        main_image: 'test-image',
+        price: 500000,
+        room_type: 'fullhouse',
+        homestay: {
+          create: {
+            homestay_name: 'test',
+            owner: 'test',
+            phone: 'test',
+          },
+        },
+      },
+    });
+  }
+  async generateToken(email: string = 'test@test.com'): Promise<string> {
+    const payload = {
+      id: 1,
+      email: email,
+    };
+
+    return this.jwtService.signAsync(payload);
   }
 }

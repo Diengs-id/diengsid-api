@@ -40,13 +40,14 @@ model VerificationCode {
 }
 
 model Customer {
-  id            String  @id @default(uuid())
+  id            String    @id @default(uuid())
   customer_name String
   phone         String?
   address       String?
   picture       String?
-  user_id       Int     @unique
-  user          User    @relation(fields: [user_id], references: [id])
+  user_id       Int       @unique
+  user          User      @relation(fields: [user_id], references: [id])
+  booking       Booking[]
 
   @@map("customers")
 }
@@ -148,6 +149,8 @@ model Category {
   name      String
   icon      String
   homestays CategoryHomestay[]
+
+  @@map("categories")
 }
 
 model CategoryHomestay {
@@ -157,6 +160,7 @@ model CategoryHomestay {
   category    Category? @relation(fields: [category_id], references: [id])
 
   @@id([category_id, homestay_id])
+  @@map("category_homestays")
 }
 
 model Room {
@@ -170,11 +174,61 @@ model Room {
   room_type   RoomType
   homestay_id String
   homestay    Homestay? @relation(fields: [homestay_id], references: [id])
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  booking     Booking[]
+
+  @@map("rooms")
 }
 
 enum RoomType {
   standar
   fullhouse
+}
+
+model Booking {
+  id                String         @id @default(uuid())
+  code_booking      String
+  room_id           String
+  customer_id       String
+  total_amount      Float
+  first_payment     FirstPayment
+  start_date        DateTime
+  end_date          DateTime
+  duration          Int
+  voucher_id        String?
+  booking_status_id Int
+  number_guest      Int
+  voucher           Voucher?       @relation(fields: [voucher_id], references: [id])
+  booking_status    BookingStatus? @relation(fields: [booking_status_id], references: [id])
+  room              Room?          @relation(fields: [room_id], references: [id])
+  customer          Customer?      @relation(fields: [customer_id], references: [id])
+  created_at        DateTime       @default(now())
+  updated_at        DateTime       @updatedAt
+
+  @@map("bookings")
+}
+
+model Voucher {
+  id          String    @id @default(uuid())
+  code        String    @unique
+  description String?
+  discount    Float // Nilai diskon dalam persentase (%)
+  expiry_date DateTime
+  bookings    Booking[]
+
+  @@map("vouchers")
+}
+
+enum FirstPayment {
+  full
+  dp
+}
+
+model BookingStatus {
+  id      Int       @id
+  name    String
+  Booking Booking[]
+
+  @@map("booking_status")
 }
