@@ -1,4 +1,4 @@
-POST http://localhost:3000/api/auth/email-verify
+POST http://localhost:2000/api/auth/email-verify
 Content-Type: application/json
 
 {
@@ -7,7 +7,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/api/auth/send-otp
+POST http://localhost:2000/api/auth/send-otp
 Content-Type: application/json
 
 {
@@ -48,19 +48,19 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/api/auth/register/google
+POST http://localhost:2000/api/auth/register/google
 Content-Type: application/json
 
 {
-  "email": "rifai111@mail.com",
+  "email": "dalaj@mail.com",
   "google_id": "sasa",
-  "name": "ahmad",
+  "name": "ds",
   "picture": "http:puctyre.com/p.png"
 }
 
 ###
 
-POST http://localhost:3000/api/auth/login/google
+POST http://localhost:2000/api/auth/login/google
 Content-Type: application/json
 
 {
@@ -70,9 +70,9 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/api/users/current
+GET http://localhost:2000/api/users/current
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJyaWZhaTExMUBtYWlsLmNvbSIsImlhdCI6MTcyNTIwMjE2OSwiZXhwIjoxNzI1MjA1NzY5fQ.z0R9Sj9LW0SUAt3_q_qQAXCT6GUKSJoD3qAJxvORNps
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUyLCJlbWFpbCI6InJpZmFpMTExQG1haWwuY29tIiwiaWF0IjoxNzI2MjI2NTQzLCJleHAiOjE3MjYyMzAxNDN9.QTq3Wt9UICFDNnsOQMc4Xq9UinCvY-J4Nqag7u_x3i4
 ###
 
 GET http://localhost:2000/api/homestays?size=20&destination=1
@@ -81,3 +81,23 @@ GET http://localhost:2000/api/homestays?size=20&destination=1
 
 
 GET http://localhost:2000/api/homestays/1e99dff5-a305-4b13-99bf-1ceb0bd43466
+
+###
+
+POST https://api.sandbox.midtrans.com/v2/charge
+Accept: application/application/json
+Content-Type: application/json
+Authorization: Basic U0ItTWlkLXNlcnZlci1HMEFUOUkxTk1JQW9kbms3LWtfMi1EeHo=
+
+{
+  "payment_type":"gopay",
+  "transaction_details": {
+    "order_id": "id-order-4",
+    "gross_amount": 200000
+  },
+  "gopay": {
+      "enable_callback": true,
+      "callback_url": "https://google.com"
+  }
+}
+

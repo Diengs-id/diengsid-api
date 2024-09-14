@@ -5,6 +5,7 @@ import { PrismaModule } from './common/prisma/prisma.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { BookingModule } from './modules/booking/booking.module';
 import { HomestayModule } from './modules/homestay/homestay.module';
+import { PaymentModule } from './modules/payment/payment.module';
 import { UserModule } from './modules/user/user.module';
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { UserModule } from './modules/user/user.module';
     HomestayModule,
     EmailModule,
     BookingModule,
+    PaymentModule,
   ],
   controllers: [],
   providers: [],

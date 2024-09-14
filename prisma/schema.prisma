@@ -232,3 +232,40 @@ model BookingStatus {
 
   @@map("booking_status")
 }
+
+model Payment {
+  id                String        @id @default(uuid())
+  booking_id        String
+  midtrans_order_id String        @default(uuid())
+  payment_code      String? // va number, deeplink redirect (gopay), cs payment_code, link generate qr code (qris), redirect_url (akulaku)
+  total_amount      Float
+  payment_status    PaymentStatus @default(pending)
+  payment_date      DateTime?
+  payment_method    PaymentMethod
+  payment_type      PaymentType
+}
+
+enum PaymentStatus {
+  pending
+  failed
+  success
+}
+
+enum PaymentMethod {
+  bca //req: bank_transfer, payment_type, transactio_detail || res: va_number
+  bni //req: bank_transfer, payment_type, transactio_detail || res: va_number
+  bri //req: bank_transfer, payment_type, transactio_detail || res: va_number
+  permata
+  cimb
+  gopay
+  qris
+  alfamart
+  indomart
+  akulaku
+}
+
+enum PaymentType {
+  dp
+  full
+  repayment
+}
